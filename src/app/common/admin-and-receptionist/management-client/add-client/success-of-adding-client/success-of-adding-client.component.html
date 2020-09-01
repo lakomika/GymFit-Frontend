@@ -1,0 +1,30 @@
+<h1>
+  <span class="badge badge-success">Gratulujemy klient został dodany!</span>
+</h1>
+<h3>
+  <span class="badge badge-primary">Wprowadzone dane to:</span>
+</h3>
+<p><b i18n>Imie:</b>  {{userApp.client.name}}</p>
+<p><b i18n>Nazwisko:</b>  {{userApp.client.surname}}</p><br>
+<p><b i18n>Email:</b>  {{userApp.email}}</p><br>
+<p><b i18n>Numer telefonu:</b>  {{userApp.client.phoneNumber}}</p>
+<p><b i18n>Data urodzenia:</b>  {{userApp.client.dateOfBirth | date: 'dd/MM/yyyy'}}</p>
+<h5 class="display-5">Dane zamieszkania:</h5>
+<p><b i18n>Ulica:</b>  {{userApp.client.street}}</p>
+<p><b i18n>Kod pocztowy:</b>  {{userApp.client.postcode}}</p>
+<p><b i18n>Miasto:</b>  {{userApp.client.city}}</p>
+
+<h3>
+  <span class="badge badge-info">Wygenerowane dane:</span>
+</h3>
+<p><b i18n>Nazwa użytkownika:</b> {{userApp.username}}</p>
+<p><b i18n>Hasło:</b> {{userApp.password}}</p>
+<p><b i18n>Karnet:</b></p>
+<div style="text-align: center;">
+  <ngx-qrcode
+    [value]="userApp.client.numberCard.toString()"
+    alt="Karnet nr:"
+    cssClass="bshadow"></ngx-qrcode>
+  {{userApp.client.numberCard.toString()}}<br>
+  <button (click)="print()" class="btn btn-warning">Drukuj</button>
+</div>

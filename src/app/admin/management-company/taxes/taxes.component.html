@@ -1,0 +1,24 @@
+<h1>&nbsp;</h1>
+<h1>
+  <span class="badge badge-success" i18n>Podatki:</span>
+</h1>
+<br>
+<div class="container " style="margin: 0 auto; width:600px;">
+  <table class="table borderless">
+
+    <div>
+      <label i18n>Stawka podatkowa: %</label>
+      <tr>
+        <td class="bg-warning">
+          <input class="form-control text-center" placeholder="{{taxRate}}%"
+                 readonly style="width: 500px;" type="text">
+        </td>
+        <td>&nbsp;
+        </td>
+        <td>
+          <button (click)="editTaxRate()" class="btn btn-warning" i18n scope="col" type="button">Edytuj</button>
+        </td>
+      </tr>
+    </div>
+  </table>
+</div>

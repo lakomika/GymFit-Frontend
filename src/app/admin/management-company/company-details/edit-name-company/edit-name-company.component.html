@@ -1,0 +1,33 @@
+<br>
+<div class="container">
+  <h4 class="display-4" i18n>Edytuj nazwe firmy:</h4>
+  <form #nameCompanyForm="ngForm"
+        (ngSubmit)="nameCompanyForm.form.valid"
+        *ngIf="!isSuccessful"
+        name="form"
+        novalidate>
+    <div class="container text-center" style="margin: 0 auto; width:600px;">
+      <br>
+      <div class="container-fluid">
+        <div class="form-group text-left">
+          <h5 class="display-5" i18n>Nazwa:</h5>
+          <input #name="ngModel" [(ngModel)]="companyDetails.name" class="form-control" id="name"
+                 maxlength="40" minlength="3" name="name" required type="text">
+        </div>
+        <div *ngIf="name.invalid && name.touched"
+             class="alert alert-danger">
+          <span *ngIf="name.hasError('minlength')" i18n>Wprowadzony ciąg znaków nie może być krótszy od 3 znaków</span>
+          <span *ngIf="name.hasError('maxlength')" i18n>Wprowadzony ciąg znaków nie może być dłuższy od 40 znaków</span>
+          <div *ngIf="name.errors.required">
+            Nazwa jest wymagana.
+          </div>
+        </div>
+        <br>
+        <button (click)="editNameCompany()" [disabled]="nameCompanyForm.invalid" class="btn btn-success" i18n
+                type="button">
+          Zapisz zmianę
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

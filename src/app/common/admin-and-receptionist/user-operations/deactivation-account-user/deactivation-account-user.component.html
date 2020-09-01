@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title">Dezaktywucja konta</h4>
+  <button (click)="closeDialog()" aria-label="Close" class="close" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<br>
+<div class="form-group text-left"><h5 class="display-5">Czy chcesz dezaktywować konto o loginie:</h5></div>
+<div style="text-align: center;"><b>{{userApp.username}}</b></div>
+
+
+<br>
+<div style="text-align: center;">
+  <button (click)="deactivation()" class="btn btn-success button" i18n type="button">Tak</button>
+
+  <button (click)="closeDialog()" class="btn btn-danger  button" i18n type="button">Anuluj</button>
+</div>

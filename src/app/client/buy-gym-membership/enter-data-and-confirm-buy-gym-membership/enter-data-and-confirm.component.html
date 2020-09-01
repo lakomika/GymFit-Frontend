@@ -1,0 +1,139 @@
+<br><br>
+<form [formGroup]="formGroup">
+  <div style="text-align: center;">
+    <h1 class="display-2">
+      <span class="badge badge-warning">Kupno karnetu</span>
+    </h1>
+  </div>
+  <h1>
+    <span class="badge badge-info">Wybrano karnet:</span>
+  </h1>
+  <br>
+  <div style="text-align: center;">
+    <ul class="list-group">
+      <li class="list-group-item width"><b>Nazwa:</b> {{gymMembership.name}}</li>
+      <li class="list-group-item width"><b>Liczba miesiecy:</b> {{gymMembership.numberOfMonths}}</li>
+      <li class="list-group-item width"><b>Cena:</b> {{gymMembership.priceTotalGross}} zł</li>
+      <li class="list-group-item width"><b>VAT:</b> {{gymMembership.taxRatePercent}} %</li>
+      <li class="list-group-item width"><b>Typ:</b> {{gymMembership.typeOfMembership}}</li>
+    </ul>
+  </div>
+  <br>
+  <h1>
+    <span class="badge badge-light">Data startu karnetu:</span>
+  </h1><br>
+  <div *ngIf="dataFetched">
+    <div *ngIf="showCalendar" style="text-align: center;">
+      <mat-form-field appearance="fill">
+        <mat-label>Wybierz datę</mat-label>
+        <input [matDatepicker]="picker" [max]="maxStart" [min]="minStart" formControlName="plannedStartOfThePass"
+               matInput>
+        <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div *ngIf="!showCalendar" style="text-align: center;">
+      <h3>{{dateOfEndGymPass | date: 'dd/MM/yyyy'}}</h3>
+    </div>
+  </div>
+  <br>
+  <h1>
+    <span class="badge badge-success">Wprowadź dane do faktury:</span>
+  </h1>
+  <br><br>
+  <div class="container text-center" style="margin: 0 auto; width:600px;">
+
+    <div class="form-group text-left"><h5 class="display-5"> Imię:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['name'].valid && formGroup.controls['name'].touched}"
+             class="form-control" formControlName="name"
+             name="name"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['name'].valid && formGroup.controls['name'].touched" class="alert alert-danger">
+        Podane imie jest niepoprawne.
+      </div>
+    </div>
+    <br>
+    <div class="form-group text-left"><h5 class="display-5"> Nazwisko:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['surname'].valid && formGroup.controls['surname'].touched}"
+             class="form-control" formControlName="surname"
+             name="surname"
+             type="text"></div>
+    <div>
+      <div *ngIf="!formGroup.controls['surname'].valid && formGroup.controls['surname'].touched"
+           class="alert alert-danger">
+        Podane nazwisko jest niepoprawne.
+      </div>
+    </div>
+    <br>
+
+    <div>
+      <div class="form-group text-left"><h5 class="display-5">Numer telefonu:</h5></div>
+      <input
+        [ngClass]="{'in-valid': !formGroup.controls['phoneNumber'].valid && formGroup.controls['phoneNumber'].touched}"
+        class="form-control" formControlName="phoneNumber" name="priceMonth"
+        placeholder="np: 123456789" type="text"></div>
+    <div>
+      <div *ngIf="!formGroup.controls['phoneNumber'].valid && formGroup.controls['phoneNumber'].touched"
+           class="alert alert-danger">
+        Podany numer telefonu jest niepoprawny.
+      </div>
+    </div>
+    <br><br>
+    <div class="form-group text-left"><b><h4 class="display-5"> Dane zamieszkania:</h4></b></div>
+
+    <div class="form-group text-left"><h5 class="display-5"> Ulica:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['street'].valid && formGroup.controls['street'].touched}"
+             class="form-control"
+             formControlName="street" name="typeOfMembership"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['street'].valid && formGroup.controls['street'].touched"
+           class="alert alert-danger">
+        Podany adres jest niepoprawny.
+      </div>
+    </div>
+    <br>
+    <div class="form-group text-left"><h5 class="display-5"> Kod pocztowy:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['postcode'].valid && formGroup.controls['postcode'].touched}"
+             class="form-control" formControlName="postcode" name="postcode" placeholder="00-000"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['postcode'].valid && formGroup.controls['postcode'].touched"
+           class="alert alert-danger">
+        Podany kod pocztowy jest niepoprawny.
+      </div>
+    </div>
+    <br>
+    <div class="form-group text-left"><h5 class="display-5"> Miasto:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['city'].valid && formGroup.controls['city'].touched}"
+             class="form-control" formControlName="city" name="city"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['city'].valid && formGroup.controls['city'].touched" class="alert alert-danger">
+        Podane miasto jest niepoprawne.
+      </div>
+    </div>
+
+    <br> <br>
+    <div style="text-align: center; display: inline-block;">
+      <re-captcha
+        formControlName="recaptchaReactive" name="recaptchaReactive"
+        siteKey="6LcA1igaAAAAADrtsCJswERdWewApW1-_u0LSyE_"
+      ></re-captcha>
+    </div>
+    <br>
+    <button (click)="approvalOfChoice()" [disabled]="formGroup.invalid" class="btn btn-success" type="button">
+      Zatwierdź
+    </button>
+  </div>
+</form>

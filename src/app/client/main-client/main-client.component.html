@@ -1,0 +1,25 @@
+<br><br>
+<h1>
+  <span class="badge badge-success" i18n>Strona główna</span>
+</h1>
+<br><br>
+<div class="modal-body">
+  <div style="text-align: center;"><p></p></div>
+  <br>
+  <div style="text-align: center;"><b><h1><span class="badge badge-warning" i18n>Dane o karnecie:</span></h1></b>
+    <h1>
+      <span class="badge badge-danger">
+        <p *ngIf="gymPassClientData.endOfThePass === null" i18n> Karnet nie był nigdy aktywowany</p>
+      </span>
+      <span class="badge badge-warning">
+      <p *ngIf="gymPassClientData.endOfThePass != null && gymPassClientData.status==='INVALID'" i18n>Karnet był ważny
+        do: {{gymPassClientData.endOfThePass | date: 'dd-MM-yyyy'}}</p>
+        </span>
+      <span class="badge badge-success">
+    <p *ngIf="gymPassClientData.endOfThePass != null && gymPassClientData.status==='VALID'" i18n>Karnet jest ważny
+      do: {{gymPassClientData.endOfThePass | date: 'dd-MM-yyyy'}}</p>
+      </span>
+    </h1>
+  </div>
+
+</div>

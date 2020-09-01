@@ -1,0 +1,38 @@
+<br>
+<div class="container">
+  <div style="text-align: center;"><h4 class="display-4" i18n>Edycja numeru NIP</h4></div>
+  <form #nameCompanyForm="ngForm"
+        (ngSubmit)="nameCompanyForm.form.valid"
+        *ngIf="!isSuccessful"
+        name="form"
+        novalidate>
+    <div class="container text-center" style="margin: 0 auto; width:600px;">
+      <br>
+      <div class="container-fluid">
+        <div class="form-group text-left">
+          <h5 class="display-5" i18n>Numer NIP:</h5>
+          <input #name="ngModel" [(ngModel)]="companyDetails&&companyDetails.taxId" class="form-control" id="name"
+                 maxlength="10" minlength="10"
+                 name="name" pattern="[0-9.]{10}" required
+                 required type="text">
+        </div>
+        <div *ngIf="name.invalid && name.touched"
+             class="alert alert-danger">
+          <span *ngIf="name.hasError('minlength')">Wprowadzony ciąg znaków jest za krótki. </span>
+          <span *ngIf="name.hasError('maxlength')">Wprowadzony ciąg znaków jest za długi.</span>
+          <div *ngIf="name.errors.required" i18n>
+            Numer NIP jest wymagany.
+          </div>
+          <div *ngIf="name.errors.pattern" i18n>
+            Numer NIP jest błędny.
+          </div>
+        </div>
+        <br>
+        <button (click)="editAccountNumberCompany()" [disabled]="nameCompanyForm.invalid" class="btn btn-success"
+                type="button">
+          Zapisz zmianę
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

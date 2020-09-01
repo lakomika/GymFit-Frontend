@@ -1,0 +1,14 @@
+<div style="text-align: center;"><h1>
+  <span class="badge badge-success" i18n>KARNET WAŻNY</span>
+</h1></div>
+<div class="modal-body">
+  <div style="text-align: center;"><p i18n>Informacje o kliencie:</p></div>
+  <div style="text-align: center;"><p><b i18n>Imię:</b> {{gymPassClientData.name}}</p></div>
+  <div style="text-align: center;"><p><b i18n>Nazwisko:</b> {{gymPassClientData.surname}}</p></div>
+  <div style="text-align: center;"><p><b i18n>Data końca
+    karnetu:</b> {{gymPassClientData.endOfThePass | date: 'dd-MM-yyyy'}}
+  </p></div>
+</div>
+<div style="text-align: center;">
+  <button (click)="closeDialog()" class="btn btn-info  button" i18n type="button">Zamknij</button>
+</div>

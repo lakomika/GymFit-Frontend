@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <h4 class="modal-title" i18n>Dezaktywacja karnetu:</h4>
+  <button (click)="closeDialog()" aria-label="Close" class="close" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p i18n>Czy chcesz dezaktywować karnet o nazwie:</p>
+  <b>{{gymMembership.name}}</b>
+</div>
+<div class="modal-footer">
+  <button (click)="deactivationGymMembership()" class="btn btn-success button" i18n type="button">Tak</button>
+  <button (click)="closeDialog()" class="btn btn-danger  button" i18n type="button">Nie</button>
+</div>

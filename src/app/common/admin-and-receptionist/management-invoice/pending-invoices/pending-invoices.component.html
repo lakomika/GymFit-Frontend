@@ -1,0 +1,84 @@
+<br>
+<br>
+<h1>
+  <span class="badge badge-success" i18n>Oczekujące faktury:</span>
+</h1>
+<br><br>
+<div *ngIf="invoices.length>0 && dataFetched">
+  <div>
+    <table class="table table-striped">
+      <thead>
+      <tr class="mat-header-row">
+        <th scope="col" style="width: 5%">
+          <div i18n style="text-align: center;">L.p</div>
+        </th>
+        <th scope="col" style="width: 10%">
+          <div i18n style="text-align: center;">Numer faktury</div>
+        </th>
+        <th scope="col" style="width: 10%">
+          <div i18n style="text-align: center;">Planowana data startu</div>
+        </th>
+        <th scope="col" style="width: 10%">
+          <div i18n style="text-align: center;">Imię</div>
+        </th>
+        <th scope="col" style="width: 10%">
+          <div i18n style="text-align: center;">Nazwisko</div>
+        </th>
+        <th scope="col" style="width: 5%">
+          <div i18n style="text-align: center;">Potwierdzenie odebrania środków</div>
+        </th>
+        <th scope="col" style="width: 5%">
+          <div i18n style="text-align: center;">Anuluj zamówienie</div>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let invoice of invoices; let i = index" [attr.data-index]="i" class="mat-row">
+        <td>
+          <div style="text-align: center;">{{(i + 1) + (page * size)}}</div>
+        </td>
+        <td>
+          <div style="text-align: center;">{{invoice.id}}</div>
+        </td>
+        <td>
+          <div style="text-align: center;">{{invoice.plannedStartOfThePass | date: 'dd/MM/yyyy'}}</div>
+        </td>
+        <td>
+          <div style="text-align: center;">{{invoice.name}}</div>
+        </td>
+        <td>
+          <div style="text-align: center;">{{invoice.surname}}</div>
+        </td>
+
+        <td>
+          <div style="text-align: center;">
+            <button (click)="confirmDeliveryOdFunds(invoice)" class="btn btn-success"><i aria-hidden="true"
+                                                                                         class="fa fa-check"></i>
+            </button>
+          </div>
+        </td>
+
+
+        <td>
+          <div style="text-align: center;">
+            <button (click)="cancelTheOrder(invoice)" class="btn btn-warning"><i aria-hidden="true"
+                                                                                 class="fa fa-check"></i>
+            </button>
+          </div>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+    <mat-paginator #paginator (page)="changePage($event)" [length]="totalElements" [pageSizeOptions]="[25, 100]"
+                   [pageSize]="25">
+
+    </mat-paginator>
+  </div>
+</div>
+<div *ngIf="invoices.length===0 && dataFetched">
+  <div style="text-align: center;">
+    <h1>
+      <span class="badge badge-warning" i18n>BRAK OCZEKUJĄCYCH FAKTUR W BAZIE DANYCH</span>
+    </h1></div>
+</div>

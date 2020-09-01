@@ -1,0 +1,16 @@
+<div style="text-align: center;"><h1>
+  <span class="badge badge-danger" i18n>KARNET NIEWAŻNY</span>
+</h1></div>
+<div class="modal-body">
+  <div style="text-align: center;"><p i18n>Informacje o kliencie:</p></div>
+  <div style="text-align: center;"><p><b i18n>Imię:</b> {{gymPassClientData.name}}</p></div>
+  <div style="text-align: center;"><p><b i18n>Nazwisko:</b> {{gymPassClientData.surname}}</p></div>
+  <div style="text-align: center;"><b i18n>Dane o karnecie:</b>
+    <p *ngIf="gymPassClientData.endOfThePass === null"> Karnet nie był nigdy aktywowany</p>
+    <p *ngIf="gymPassClientData.endOfThePass != null">Karnet był ważny
+      do: {{gymPassClientData.endOfThePass | date: 'dd-MM-yyyy'}}</p>
+  </div>
+</div>
+<div style="text-align: center;">
+  <button (click)="closeDialog()" class="btn btn-info  button" i18n type="button">Zamknij</button>
+</div>

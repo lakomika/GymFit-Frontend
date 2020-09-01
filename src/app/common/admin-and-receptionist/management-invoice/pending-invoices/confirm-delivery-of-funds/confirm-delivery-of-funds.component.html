@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <div style="text-align: center;">
+    <h4 class="modal-title" i18n>Potwierdzenie odebrania środków </h4>
+  </div>
+  <button (click)="closeDialog()" aria-label="Close" class="close" type="button">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div style="text-align: center;"><p i18n>Czy chcesz potwierdzić zamówienie</p></div>
+  <div style="text-align: center;"><p i18n>o numerze :</p></div>
+  <div style="text-align: center;"><b>{{historyOfOrder.id}}</b>
+  </div>
+</div>
+<div style="text-align: center;">
+  <button (click)="confirmDeliveryOfFunds()" class="btn btn-success button" i18n type="button">Tak</button>
+  <button class="btn btn-lg btn-link" disabled type="button"> &nbsp;&nbsp;&nbsp;</button>
+  <button (click)="closeDialog()" class="btn btn-danger  button" i18n type="button">Nie</button>
+</div>

@@ -1,0 +1,16 @@
+<h1>
+  <span class="badge badge-pill" i18n>Dane wybranego użytkownika</span>
+</h1>
+<p><b i18n>Id:</b>  {{userApp.id}}</p><br>
+<p><b i18n>Imie:</b>  {{userApp.receptionist.name}}</p><br>
+<p><b i18n>Nazwisko:</b>  {{userApp.receptionist.surname}}</p><br>
+<p><b i18n>Nazwa użytkownika:</b> {{userApp.username}}</p><br>
+<p><b i18n>Email:</b>  {{userApp.email}}</p><br>
+<p><b i18n>Numer telefonu:</b>  {{userApp.receptionist.phoneNumber}}</p><br>
+<h5 class="display-5">Dane zamieszkania:</h5>
+<p><b i18n>Ulica:</b>  {{userApp.receptionist.street}}</p><br>
+<p><b i18n>Kod pocztowy:</b>  {{userApp.receptionist.postcode}}</p><br>
+<p><b i18n>Miasto:</b>  {{userApp.receptionist.city}}</p><br>
+<div style="text-align: center;">
+  <button (click)="close()" class="btn btn-dark" i18n>Zamknij</button>
+</div>

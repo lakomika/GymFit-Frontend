@@ -1,0 +1,25 @@
+<h1>
+  <span class="badge badge-pill" i18n>Dane wybranego klienta</span>
+</h1>
+<p><b i18n>Id:</b>  {{userApp.id}}</p><br>
+<p><b i18n>Imie:</b>  {{userApp.client.name}}</p>
+<p><b i18n>Nazwisko:</b>  {{userApp.client.surname}}</p><br>
+<p><b i18n>Nazwa użytkownika:</b> {{userApp.username}}</p><br>
+<p><b i18n>Email:</b>  {{userApp.email}}</p><br>
+<p><b i18n>Numer telefonu:</b>  {{userApp.client.phoneNumber}}</p><br>
+<p><b i18n>Data urodzenia:</b>  {{userApp.client.dateOfBirth | date: 'dd/MM/yyyy'}}</p>
+<h5 class="display-5">Dane zamieszkania:</h5>
+<p><b i18n>Ulica:</b>  {{userApp.client.street}}</p>
+<p><b i18n>Kod pocztowy:</b>  {{userApp.client.postcode}}</p>
+<p><b i18n>Miasto:</b>  {{userApp.client.city}}</p>
+<div style="text-align: center;">
+  <ngx-qrcode
+    [value]="userApp.client.numberCard.toString()"
+    alt="Karnet nr:"
+    cssClass="bshadow"></ngx-qrcode>
+  {{userApp.client.numberCard.toString()}}<br>
+</div>
+<br>
+<div style="text-align: center;">
+  <button (click)="close()" class="btn btn-dark" i18n>Zamknij</button>
+</div>

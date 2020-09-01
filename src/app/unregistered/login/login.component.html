@@ -1,0 +1,93 @@
+<br><br>
+<h1>
+  <span class="badge badge-success" i18n>Logowanie:</span>
+</h1>
+<br>
+<div class="col-md-12">
+  <div class="card card-container">
+    <form
+      #f="ngForm"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      *ngIf="!isLoggedIn"
+      name="form"
+      novalidate
+    >
+      <div class="form-group">
+        <label i18n>Nazwa użytkownika</label>
+        <input
+          #username="ngModel"
+          [(ngModel)]="form.username"
+          class="form-control"
+          name="username"
+          required
+          type="text"
+        />
+        <div
+          *ngIf="f.submitted && username.invalid"
+          class="alert alert-danger"
+          i18n
+          role="alert">
+          Nazwa użytkownika jest wymagana!
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Hasło</label>
+        <input
+          #password="ngModel"
+          [(ngModel)]="form.password"
+          class="form-control"
+          minlength="6"
+          name="password"
+          required
+          type="password"
+        />
+        <div
+          *ngIf="f.submitted && password.invalid"
+          class="alert alert-danger"
+          role="alert">
+          <div *ngIf="password.errors.required" i18n>Hasło jest wymagane!</div>
+          <div *ngIf="password.errors.minlength" i18n>
+            Hasło musi mieć 6 znaków.
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; display: inline-block;">
+        <re-captcha
+          #captchaControl="ngModel"
+          [(ngModel)]="captcha"
+          name="captcha"
+          required
+          siteKey="6LcA1igaAAAAADrtsCJswERdWewApW1-_u0LSyE_"
+        ></re-captcha>
+      </div>
+      <div class="form-group">
+        <button [disabled]="f.invalid" class="btn btn-primary btn-block">
+          Zaloguj się
+        </button>
+      </div>
+      <div class="form-group">
+        <a class="btnForgetPwd" href="#" routerLink="/forget-password" value="Login">Zapomniałeś/aś hasła?</a>
+      </div>
+      <div class="form-group">
+        <div
+          *ngIf="f.submitted && isLoginFailed"
+          class="alert alert-danger"
+          role="alert">
+          <div style="text-align: center;">
+            <p> Logowanie nie powiodło się: </p>
+            <p>{{ errorMessage }}</p>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div *ngIf="isLoggedIn" class="alert alert-success">
+      <div style="text-align: center;">
+        <p>Trwa ładowanie...</p>
+      </div>
+      <meta *ngIf="roles.toString()=='ROLE_ADMIN'" content="0;url=/admin/main" http-equiv="Refresh">
+      <meta *ngIf="roles.toString()=='ROLE_RECEPTIONIST'" content="0;url=/receptionist/main" http-equiv="Refresh">
+      <meta *ngIf="roles.toString()=='ROLE_CLIENT'" content="0;url=/client/main" http-equiv="Refresh">
+    </div>
+  </div>
+</div>

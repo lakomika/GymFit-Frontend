@@ -1,0 +1,43 @@
+<br><br>
+
+<h1>
+  <span class="badge badge-success" i18n>  Lista aktywnych karnetów:</span>
+</h1>
+<br>
+<div *ngIf="gymMemberships.length>0 && dataFetched">
+  <div>
+    <table class="table table-striped">
+      <thead>
+      <tr class="mat-header-row">
+        <th i18n scope="col" style="width: 5%">L.p</th>
+        <th i18n scope="col" style="width: 15%">Nazwa</th>
+        <th i18n scope="col" style="width: 15%">Cena za miesiąc<br> (PLN z VAT)</th>
+        <th i18n scope="col" style="width: 8%">Liczba miesięcy</th>
+        <th i18n scope="col" style="width: 17%">Cena końcowa<br> (PLN z VAT)</th>
+        <th i18n scope="col" style="width: 20%">Typ członkostwa</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let gymMembership of gymMemberships; let i = index" [attr.data-index]="i" class="mat-row">
+        <td>{{(i + 1) + (page * size)}}</td>
+        <td>{{gymMembership.name}}</td>
+        <td>{{gymMembership.priceMonthGross  | number : '1.2-2'}}</td>
+        <td>{{gymMembership.numberOfMonths}}</td>
+        <td>{{gymMembership.priceTotalGross  | number : '1.2-2'}}</td>
+        <td>{{gymMembership.typeOfMembership}}</td>
+      </tr>
+      </tbody>
+    </table>
+    <mat-paginator #paginator (page)="changePage($event)" [length]="totalElements" [pageSizeOptions]="[10, 25, 100]"
+                   [pageSize]="10">
+
+    </mat-paginator>
+  </div>
+</div>
+<div *ngIf="gymMemberships.length===0 && dataFetched">
+  <div style="text-align: center;">
+    <h1>
+      <span class="badge badge-warning" i18n>BRAK AKTYWNYCH KARNETÓW W BAZIE DANYCH</span>
+    </h1></div>
+</div>
+

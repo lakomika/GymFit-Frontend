@@ -1,0 +1,133 @@
+<div id="app">
+  <nav class="navbar navbar-expand navbar-dark  bg-primary navbar-default">
+    <a *ngIf="!isLoggedIn" class="navbar-brand" href="/home">GymFit</a>
+    <a *ngIf="showAdminBoard" class="navbar-brand" href="admin/main">GymFit</a>
+    <a *ngIf="showClientBoard" class="navbar-brand" href="client/main">GymFit</a>
+    <a *ngIf="showReceptionistBoard" class="navbar-brand" href="admin-and-receptionist/check-status-gym-pass">GymFit</a>
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+
+      <li *ngIf="!isLoggedIn" class="nav-item active">
+        <a class="nav-link" routerLink="/home">Strona główna<span class="sr-only">(current)</span></a>
+      <li *ngIf="showClientBoard" class="nav-item active">
+        <a class="nav-link" routerLink="client/main">Strona główna<span class="sr-only">(current)</span></a>
+      </li>
+      <li *ngIf="showClientBoard" class="nav-item active">
+        <a class="nav-link" routerLink="client/buy-gym-membership">Doładuj karnet<span class="sr-only">(current)</span></a>
+      </li>
+      <li *ngIf="showClientBoard" class="nav-item active">
+        <a class="nav-link" routerLink="client/history-of-orders">Historia zamówień<span
+          class="sr-only">(current)</span></a>
+      </li>
+      <li *ngIf="showClientBoard" class="nav-item active">
+        <a class="nav-link" routerLink="client/access-card">Karta dostępu<span class="sr-only">(current)</span></a>
+      </li>
+
+
+      <li *ngIf="showAdminBoard || showReceptionistBoard" class="nav-item active">
+        <a class="nav-link" routerLink="admin-and-receptionist/check-status-gym-pass">Sprawdź status<span
+          class="sr-only">(current)</span></a>
+      </li>
+
+
+      <li *ngIf="showAdminBoard || showReceptionistBoard" class="nav-item dropdown">
+        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
+           href="#" id="navbarDropdownMenuClient">
+          Klient
+        </a>
+        <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
+          <a class="dropdown-item" routerLink="admin-and-receptionist/management-client/sell-gym-pass">Sprzedaj
+            karnet</a>
+          <a class="dropdown-item" routerLink="admin-and-receptionist/management-client/active-clients">Aktywni
+            klienci</a>
+          <a class="dropdown-item" routerLink="admin-and-receptionist/management-client/add-client">Dodaj klienta</a>
+          <a class="dropdown-item" routerLink="admin-and-receptionist/management-client/inactive-clients">Nieaktywni
+            klienci</a>
+        </div>
+
+      </li>
+
+
+      <li *ngIf="showAdminBoard" class="nav-item dropdown">
+        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
+           href="#" id="navbarDropdownMenuGymReceptionist">
+          Recepcjononiści
+        </a>
+        <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
+          <a class="dropdown-item" routerLink="admin/management-receptionist/active-receptionists">Aktywni
+            recepcjoniści</a>
+          <a class="dropdown-item" routerLink="admin/management-receptionist/add-receptionist">Dodaj recepcjonistę</a>
+          <a class="dropdown-item" routerLink="admin/management-receptionist/inactive-receptionists">Nieaktywni
+            recepcjoniści</a>
+        </div>
+
+      </li>
+
+      <li *ngIf="showAdminBoard" class="nav-item dropdown">
+        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
+           href="#" id="navbarDropdownMenuGymMembership">
+          Karnety
+        </a>
+        <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
+          <a class="dropdown-item" routerLink="admin/management-gym-membership/active-gym-memberships">Lista aktywnych
+            ofert</a>
+          <a class="dropdown-item" routerLink="admin/management-gym-membership/add-gym-membership">Dodaj karnet do
+            oferty</a>
+          <a class="dropdown-item" routerLink="admin/management-gym-membership/deactivate-gym-membership">Dezaktywuj
+            karnet z oferty</a>
+          <a class="dropdown-item" routerLink="admin/management-gym-membership/inactive-gym-memberships">Historyczne
+            oferty</a>
+        </div>
+
+      </li>
+
+
+      <li *ngIf="showAdminBoard || showReceptionistBoard" class="nav-item dropdown">
+        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
+           href="#" id="navbarDropdownMenuActivities">
+          Faktury
+        </a>
+        <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
+          <a class="dropdown-item" routerLink="admin-and-receptionist/management-client/pending-invoices">Oczekujące
+            faktury</a>
+        </div>
+
+      </li>
+
+      <li *ngIf="showAdminBoard" class="nav-item dropdown">
+        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
+           href="#" id="navbarDropdownMenuCompany">
+          Firma
+        </a>
+        <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
+          <a class="dropdown-item" routerLink="admin/management-company/company-details">Dane firmy</a>
+          <a class="dropdown-item" routerLink="admin/management-company/taxes">Podatki</a>
+        </div>
+
+      </li>
+
+    </ul>
+
+
+    <ul class="navbar-nav ml-auto">
+      <li *ngIf="showAdminBoard || showReceptionistBoard ||showClientBoard" class="nav-item dropdown">
+        <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle" data-toggle="dropdown"
+           href="#" id="navbarDropdownMenuGymSettings">
+          Ustawienia
+        </a>
+        <div aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
+          <a class="dropdown-item" routerLink="common/settings/change-password">Zmień hasło</a>
+          <a *ngIf="showClientBoard" class="dropdown-item" routerLink="client/settings/my-profile">Mój profil</a>
+        </div>
+
+      </li>
+      <li *ngIf="isLoggedIn" class="nav-item">
+        <a (click)="logout()" class="nav-link" href>Wyloguj się</a>
+      </li>
+    </ul>
+
+  </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>

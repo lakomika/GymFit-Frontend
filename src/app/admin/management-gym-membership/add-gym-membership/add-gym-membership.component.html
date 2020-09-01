@@ -1,0 +1,74 @@
+<br><br>
+<h1>
+  <span class="badge badge-secondary" i18n>  Dodaj karnet do oferty:</span>
+</h1>
+<br>
+<div class="container text-center" style="margin: 0 auto; width:600px;">
+  <form (ngSubmit)="addGymMembership(formGroup.value)" [formGroup]="formGroup">
+    <div class="form-group text-left"><h5 class="display-5" i18n> Nazwa:</h5></div>
+    <div>
+      <input (keyup)="countTotalPrice(formGroup.value)"
+             [ngClass]="{'in-valid': !formGroup.controls['name'].valid && formGroup.controls['name'].touched}"
+             class="form-control" formControlName="name"
+             i18n
+             name="name" type="text">
+    </div>
+
+    <div>
+      <div *ngIf="!formGroup.controls['name'].valid && formGroup.controls['name'].touched" class="alert alert-danger"
+           i18n>
+        Podana nazwa jest niepoprawna.
+      </div>
+    </div>
+    <br>
+    <div class="form-group text-left"><h5 class="display-5" i18n> Cena za miesiąc: (PLN - Brutto)</h5></div>
+    <div>
+      <input (keyup)="countTotalPrice(formGroup.value)" [ngClass]="{'in-valid': !formGroup.controls['priceMonthGross'].valid &&
+              formGroup.controls['priceMonthGross'].touched}" class="form-control"
+             formControlName="priceMonthGross" name="priceMonthGross"
+             placeholder="np: 99,22"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['priceMonthGross'].valid && formGroup.controls['priceMonthGross'].touched"
+           class="alert alert-danger"
+           i18n>
+        Podana cena jest niepoprawna.
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group text-left"><h5 class="display-5" i18n> Liczba miesięcy:</h5></div>
+    <div>
+      <input (keyup)="countTotalPrice(formGroup.value)" [ngClass]="{'in-valid': !formGroup.controls['numberOfMonths'].valid &&
+              formGroup.controls['numberOfMonths'].touched }" class="form-control" formControlName="numberOfMonths"
+             name="numberOfMonths"
+             placeholder="minimalnie 1, maksymalnie 12"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['numberOfMonths'].valid && formGroup.controls['numberOfMonths'].touched"
+           class="alert alert-danger"
+           i18n>
+        Liczba miesięcy jest niepoprawna.
+      </div>
+    </div>
+
+    <br>
+    <div class="form-group text-left"><h5 class="display-5" i18n> Typ członkostwa:</h5></div>
+    <div class="form-group">
+      <select class="form-control" formControlName="typeOfMembership">
+        <option i18n>Normalny</option>
+        <option i18n>Student</option>
+        <option i18n>Emeryt (65+)</option>
+      </select>
+    </div>
+    <br>
+    <h5 *ngIf="formGroup.valid" class="display-5" i18n>
+      Cena końcowa: {{priceTotalGrossShown | number : '1.2-2'}} zł (wliczając podatek)
+    </h5>
+    <h5 *ngIf="formGroup.invalid" class="display-5">&nbsp;</h5>
+    <br>
+    <button [disabled]="formGroup.invalid" class="btn btn-success" i18n>Dodaj karnet</button>
+  </form>
+</div>

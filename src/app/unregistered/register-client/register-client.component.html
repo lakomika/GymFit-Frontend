@@ -1,0 +1,160 @@
+<br><br>
+<h1>
+  <span class="badge badge-success">Formularz rejestracji:</span>
+</h1>
+<br>
+<br>
+<div class="container text-center" style="margin: 0 auto; width:600px;">
+  <form (ngSubmit)="addClient()" [formGroup]="formGroup">
+
+    <div class="form-group text-left"><h5 class="display-5"> Imię:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['name'].valid && formGroup.controls['name'].touched}"
+             class="form-control" formControlName="name"
+             name="name"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['name'].valid && formGroup.controls['name'].touched" class="alert alert-danger">
+        Podane imie jest niepoprawne.
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group text-left"><h5 class="display-5"> Nazwisko:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['surname'].valid && formGroup.controls['surname'].touched}"
+             class="form-control" formControlName="surname"
+             name="surname"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['surname'].valid && formGroup.controls['surname'].touched"
+           class="alert alert-danger">
+        Podane nazwisko jest niepoprawne.
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group text-left"><h5 class="display-5"> Email:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['email'].valid && formGroup.controls['email'].touched}"
+             class="form-control" formControlName="email"
+             name="email"
+             type="email">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched" class="alert alert-danger">
+        Podany email jest niepoprawny.
+      </div>
+    </div>
+    <br>
+    <div class="form-group text-left"><h5 class="display-5"> Data urodzenia:</h5></div>
+    <div style="text-align: center;">
+      <mat-form-field appearance="fill">
+        <mat-label>Wybierz datę</mat-label>
+        <input [matDatepicker]="picker" [max]="maxYearOfBirth" [min]="minYearOfBirth" formControlName="dateOfBirth"
+               matInput>
+        <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="form-group text-left"><h5 class="display-5"> Numer telefonu:</h5></div>
+    <div>
+      <input
+        [ngClass]="{'in-valid': !formGroup.controls['phoneNumber'].valid && formGroup.controls['phoneNumber'].touched}"
+        class="form-control" formControlName="phoneNumber" name="priceMonth"
+        placeholder="np: 123456789"
+
+        type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['phoneNumber'].valid && formGroup.controls['phoneNumber'].touched"
+           class="alert alert-danger">
+        Podany numer telefonu jest niepoprawny.
+      </div>
+    </div>
+    <br><br>
+    <div class="form-group text-left"><b><h4 class="display-5"> Dane zamieszkania:</h4></b></div>
+
+    <div class="form-group text-left"><h5 class="display-5"> Ulica:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['street'].valid && formGroup.controls['street'].touched}"
+             class="form-control"
+             formControlName="street" name="typeOfMembership"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['street'].valid && formGroup.controls['street'].touched"
+           class="alert alert-danger">
+        Podany adres jest niepoprawny.
+      </div>
+    </div>
+    <br>
+    <div class="form-group text-left"><h5 class="display-5"> Kod pocztowy:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['postcode'].valid && formGroup.controls['postcode'].touched}"
+             class="form-control" formControlName="postcode" name="postcode" placeholder="00-000"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['postcode'].valid && formGroup.controls['postcode'].touched"
+           class="alert alert-danger">
+        Podany kod pocztowy jest niepoprawny.
+      </div>
+    </div>
+    <br>
+    <div class="form-group text-left"><h5 class="display-5"> Miasto:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['city'].valid && formGroup.controls['city'].touched}"
+             class="form-control" formControlName="city" name="city"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['city'].valid && formGroup.controls['city'].touched" class="alert alert-danger">
+        Podane miasto jest niepoprawne.
+      </div>
+    </div>
+    <br> <br>
+    <div class="form-group text-left"><b><h4 class="display-5"> Dane logowania:</h4></b></div>
+
+    <div class="form-group text-left"><h5 class="display-5"> Nazwa użytkownika:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['username'].valid && formGroup.controls['username'].touched}"
+             class="form-control" formControlName="username" name="login"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['username'].valid && formGroup.controls['username'].touched"
+           class="alert alert-danger">
+        Podany login jest niepoprawny.
+      </div>
+    </div>
+    <br>
+    <div class="form-group text-left"><h5 class="display-5"> Hasło:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['password'].valid && formGroup.controls['password'].touched}"
+             class="form-control" formControlName="password" name="password"
+             placeholder="min 9 znaków, wymagane: mała i duża litera, cyfra i znak specjalny "
+             type="password">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['password'].valid && formGroup.controls['password'].touched"
+           class="alert alert-danger">
+        Podane hasło nie spełnia wymagań.
+      </div>
+    </div>
+    <div *ngIf="isSignUpFailed" class="alert alert-warning">
+      Rejestracja nieudana!<br>{{ errorMessage }}
+    </div>
+    <br>
+    <div style="text-align: center; display: inline-block;">
+      <re-captcha
+        formControlName="recaptchaReactive" name="recaptchaReactive"
+        siteKey="6LcA1igaAAAAADrtsCJswERdWewApW1-_u0LSyE_"
+      ></re-captcha>
+    </div>
+    <br>
+    <button [disabled]="formGroup.invalid" class="btn btn-success">Zarejestruj</button>
+  </form>
+</div>

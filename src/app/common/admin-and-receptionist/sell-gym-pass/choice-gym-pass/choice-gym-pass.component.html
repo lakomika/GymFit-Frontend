@@ -1,0 +1,99 @@
+<br><br>
+<h1>
+  <span class="badge badge-primary">Sprzedaż karnetu dla:</span>
+</h1>
+<p i18n>Imię: {{gymPassClientData.name}}</p>
+<p i18n>Nazwisko: {{gymPassClientData.surname}}</p>
+<p i18n>Data końca karnetu: </p>
+<p *ngIf="gymPassClientData.endOfThePass === null"> Karnet nie był nigdy aktywowany</p>
+<p *ngIf="gymPassClientData.endOfThePass != null && gymPassClientData.status==='INVALID'">Karnet był ważny
+  do: {{gymPassClientData.endOfThePass | date: 'dd-MM-yyyy'}}</p>
+<p *ngIf="gymPassClientData.endOfThePass != null && gymPassClientData.status==='VALID'">Karnet jest ważny
+  do: {{gymPassClientData.endOfThePass | date: 'dd-MM-yyyy'}}</p>
+<h1>
+  <span class="badge badge-success">Wybierz karnet:</span>
+</h1>
+<div *ngIf="gymMemberships.length>0 && dataFetched  && !isPendingInvoice">
+  <br><br>
+  <div>
+    <table class="table table-striped">
+      <thead>
+      <tr class="mat-header-row">
+        <th scope="col" style="width: 5%">
+          <div style="text-align: center;">L.p</div>
+        </th>
+        <th scope="col" style="width: 25%">
+          <div style="text-align: center;">Nazwa</div>
+        </th>
+        <th scope="col" style="width: 10%">
+          <div style="text-align: center;">Cena za miesiąc</div>
+        </th>
+        <th scope="col" style="width: 10%">
+          <div style="text-align: center;">Liczba miesięcy</div>
+        </th>
+        <th scope="col" style="width: 10%">
+          <div style="text-align: center;">Cena</div>
+        </th>
+        <th scope="col" style="width: 20%">
+          <div style="text-align: center;">Typ członkostwa</div>
+        </th>
+        <th scope="col" style="width: 5%">
+          <div style="text-align: center;">Wybierz</div>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let gymMembership of gymMemberships; let i = index" [attr.data-index]="i" class="mat-row">
+        <td>
+          <div style="text-align: center;">{{(i + 1) + (page * size)}}</div>
+        </td>
+        <td>
+          <div style="text-align: center;">{{gymMembership.name}}</div>
+        </td>
+        <td>
+          <div style="text-align: center;">{{gymMembership.priceMonthGross  | number : '1.2-2'}} zł</div>
+        </td>
+        <td>
+          <div style="text-align: center;">{{gymMembership.numberOfMonths}}</div>
+        </td>
+        <td>
+          <div style="text-align: center;">{{gymMembership.priceTotalGross  | number : '1.2-2'}} zł</div>
+        </td>
+        <td>
+          <div style="text-align: center;">{{gymMembership.typeOfMembership}}</div>
+        </td>
+
+        <td>
+          <div style="text-align: center;">
+            <button (click)="choiceGymMembership(gymMembership)" class="btn btn-success"><i aria-hidden="true"
+                                                                                            class="fa fa-check"></i>
+            </button>
+          </div>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+    <mat-paginator #paginator (page)="changePage($event)" [length]="totalElements" [pageSizeOptions]="[25, 100]"
+                   [pageSize]="25">
+
+    </mat-paginator>
+  </div>
+</div>
+<div *ngIf="gymMemberships.length===0 && dataFetched && !isPendingInvoice">
+  <div style="text-align: center;">
+    <h1>
+      <span class="badge badge-danger">BRAK KARNETÓW W BAZIE DO WYBORU</span>
+    </h1></div>
+</div>
+
+<div *ngIf="isPendingInvoice">
+  <br><br><br>
+  <div style="text-align: center;">
+    <h1>
+      <span
+        class="badge badge-warning">Nie możesz zamówić karnetu, gdyż nie została zakończona poprzednia transakcja.</span>
+    </h1></div>
+</div>
+
+

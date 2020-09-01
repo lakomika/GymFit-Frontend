@@ -1,0 +1,22 @@
+<h1>
+  <span class="badge badge-success" i18n>Gratulujemy recepcjonista został dodany!</span>
+</h1>
+<h3>
+  <span class="badge badge-primary" i18n>Wprowadzone dane to:</span>
+</h3>
+<p><b i18n>Imie:</b>  {{userApp.receptionist.name}}</p><br>
+<p><b i18n>Nazwisko:</b>  {{userApp.receptionist.surname}}</p><br>
+<p><b i18n>Email:</b>  {{userApp.email}}</p><br>
+<p><b i18n>Numer telefonu:</b>  {{userApp.receptionist.phoneNumber}}</p><br>
+<h5 class="display-5" i18n>Dane zamieszkania:</h5>
+<p><b i18n>Ulica:</b>  {{userApp.receptionist.street}}</p><br>
+<p><b i18n>Kod pocztowy:</b>  {{userApp.receptionist.postcode}}</p><br>
+<p><b i18n>Miasto:</b>  {{userApp.receptionist.city}}</p><br>
+<h3>
+  <span class="badge badge-info" i18n>Wygenerowane dane:</span>
+</h3>
+<p><b i18n>Nazwa użytkownika:</b> {{userApp.username}}</p><br>
+<p><b i18n>Hasło:</b> {{userApp.password}}</p><br>
+<div style="text-align: center;">
+  <button (click)="print()" class="btn btn-warning" i18n>Drukuj</button>
+</div>

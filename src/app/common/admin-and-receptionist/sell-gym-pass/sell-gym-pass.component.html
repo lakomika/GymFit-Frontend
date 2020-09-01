@@ -1,0 +1,28 @@
+<br><br>
+<h1>
+  <span class="badge badge-primary">Sprzedaż karnetu:</span>
+</h1>
+
+<br><br><br><br>
+
+<div class="form-group text-left"><h5 class="display-5"> Podaj numer karty klienta:</h5></div>
+<form (ngSubmit)="getDataClientAboutGymPass(formGroup.value)" [formGroup]="formGroup">
+  <div style="margin: 0 auto; width:600px;">
+    <input
+      [ngClass]="{'in-valid': !formGroup.controls['numberCard'].valid && formGroup.controls['numberCard'].touched }"
+      class="form-control" formControlName="numberCard" name="numberCard"
+      type="text">
+  </div>
+  <br>
+  <div style="margin: 0 auto; width:600px;">
+    <div *ngIf="!formGroup.controls['numberCard'].valid && formGroup.controls['numberCard'].touched"
+         class="alert alert-danger"
+         style="text-align: center; width:600px;">
+      Podany numer karty jest niepoprawny
+    </div>
+  </div>
+  <br>
+  <div style="text-align: center;">
+    <button [disabled]="formGroup.invalid" class="btn btn-success">Przejdź dalej</button>
+  </div>
+</form>

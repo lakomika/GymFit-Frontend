@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <div style="text-align: center;">
+    <h4 class="modal-title" i18n>Rejestracja powiodła się</h4>
+  </div>
+
+</div>
+<div class="modal-body">
+  <div style="text-align: center;"><p i18n>Gratulujemy rejestracja powiodła!</p></div>
+  <div style="text-align: center;"><p><b i18n>Na jaką stronę chcesz przejść:</b></p></div>
+</div>
+<div style="text-align: center;">
+  <button (click)="goToMainPage()" class="btn btn-success button" i18n type="button">Stronę główną</button>
+  <button class="btn btn-lg btn-link" disabled type="button"> &nbsp;&nbsp;&nbsp;</button>
+  <button (click)="goToLoginPage()" class="btn btn-info  button" i18n type="button">Stronę logowania</button>
+</div>

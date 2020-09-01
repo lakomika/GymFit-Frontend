@@ -1,0 +1,38 @@
+<br>
+<div class="container">
+  <div style="text-align: center;"><h4 class="display-4" i18n>Edycja stawki podatkowej</h4></div>
+  <form #taxesForm="ngForm"
+        (ngSubmit)="taxesForm.form.valid"
+        *ngIf="!isSuccessful"
+        name="form"
+        novalidate>
+    <div class="container text-center" style="margin: 0 auto; width:600px;">
+      <br>
+      <div class="container-fluid">
+        <div class="form-group text-left">
+          <h5 class="display-5" i18n>Stawka podatkowa:</h5>
+          <input #name="ngModel" :after [(ngModel)]="taxRate" class="form-control" id="taxRate" max="99"
+                 min="0" name="taxRate" placeholder="%" required required style="text-align: center;"
+                 type="text">
+
+        </div>
+        <div *ngIf="name.invalid && name.touched"
+             class="alert alert-danger">
+          <span *ngIf="name.hasError('minlength')" i18n>Wprowadzony ciąg znaków jest za krótki. </span>
+          <span *ngIf="name.hasError('maxlength')" i18n>Wprowadzony ciąg znaków jest za długi.</span>
+          <div *ngIf="name.errors.required" i18n>
+            Stawka podatkowa jest wymagana.
+          </div>
+          <div *ngIf="name.errors.pattern" i18n>
+            Numer konta jest błędny.
+          </div>
+        </div>
+        <br>
+        <button (click)="editTaxRate(taxRate)" [disabled]="taxesForm.invalid" class="btn btn-success"
+                i18n type="button">
+          Zapisz zmianę
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,102 @@
+<br>
+<br>
+<div *ngIf="invoices.length>0">
+  <h1>
+    <span class="badge badge-success" i18n>Historia zamówień:</span>
+  </h1>
+  <br><br>
+  <div>
+    <table class="table table-striped">
+      <thead>
+      <tr class="mat-header-row">
+        <th scope="col" style="width: 10%">
+          <div i18n style="text-align: center;">Numer faktury</div>
+        </th>
+        <th scope="col" style="width: 10%">
+          <div i18n style="text-align: center;">Planowana data startu</div>
+        </th>
+        <th scope="col" style="width: 10%">
+          <div i18n style="text-align: center;">Czas startu</div>
+        </th>
+        <th scope="col" style="width: 10%">
+          <div i18n style="text-align: center;">Czas końca</div>
+        </th>
+        <th scope="col" style="width: 20%">
+          <div i18n style="text-align: center;">Status</div>
+        </th>
+        <th scope="col" style="width: 20%">
+          <div i18n style="text-align: center;">Typ transakcji</div>
+        </th>
+        <th scope="col" style="width: 5%">
+          <div i18n style="text-align: center;">Faktura</div>
+        </th>
+        <th scope="col" style="width: 5%">
+          <div i18n style="text-align: center;">Dane do przelewu</div>
+        </th>
+        <th scope="col" style="width: 5%">
+          <div i18n style="text-align: center;">Anuluj zamówienie</div>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let invoice of invoices" class="mat-row">
+        <td>
+          <div style="text-align: center;">{{invoice.id}}</div>
+        </td>
+        <td>
+          <div style="text-align: center;">{{invoice.plannedStartOfThePass | date: 'dd/MM/yyyy'}}</div>
+        </td>
+        <td>
+          <div style="text-align: center;">{{invoice.startOfThePass | date: 'dd/MM/yyyy'}}</div>
+        </td>
+        <td>
+          <div style="text-align: center;">{{invoice.endOfThePass | date: 'dd/MM/yyyy'}}</div>
+        </td>
+        <td>
+          <div style="text-align: center;">{{invoice.status }}</div>
+        </td>
+        <td>
+          <div style="text-align: center;">{{invoice.typeOfTransaction }}</div>
+        </td>
+
+        <td>
+          <div *ngIf="invoice.status=='ZAPŁACONE'" style="text-align: center;">
+            <button (click)="showInvoice(invoice.id)" class="btn btn-success">
+              <i aria-hidden="true"
+                 class="fa fa-check"></i>
+            </button>
+          </div>
+        </td>
+
+        <td>
+          <div *ngIf="invoice.status === 'NIEZAPŁACONE'" style="text-align: center;">
+            <button (click)="transferData(invoice.id)" class="btn btn-info"><i aria-hidden="true"
+                                                                               class="fa fa-check"></i>
+            </button>
+          </div>
+        </td>
+
+        <td>
+          <div *ngIf="invoice.status === 'NIEZAPŁACONE'" style="text-align: center;">
+            <button (click)="cancelTheOrder(invoice)" class="btn btn-warning"><i aria-hidden="true"
+                                                                                 class="fa fa-check"></i>
+            </button>
+          </div>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+    <mat-paginator #paginator (page)="changePage($event)" [length]="totalElements" [pageSizeOptions]="[25, 100]"
+                   [pageSize]="25">
+
+    </mat-paginator>
+  </div>
+</div>
+
+<div *ngIf="invoices.length===0 && dataFetched">
+  <div style="text-align: center;">
+    <h1>
+      <span class="badge badge-warning" i18n>NIE ODNOTOWANO ZAMÓWIENIA KARNETU</span>
+    </h1></div>
+</div>

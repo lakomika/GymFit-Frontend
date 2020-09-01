@@ -1,0 +1,45 @@
+<div style="text-align: center;"><h4 class="display-4" i18n>Edycja adresu firmy</h4></div>
+<div class="container text-center" style="margin: 0 auto; width:600px;">
+  <form (ngSubmit)="editAddress(formGroup.value)" [formGroup]="formGroup">
+    <div class="form-group text-left"><h5 class="display-5" i18n> Ulica:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['street'].valid && formGroup.controls['street'].touched}"
+             class="form-control" formControlName="street" name="street"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['street'].valid && formGroup.controls['street'].touched"
+           class="alert alert-danger" i18n>
+        Podana ulica jest niepoprawna.
+      </div>
+    </div>
+    <br>
+    <div class="form-group text-left"><h5 class="display-5" i18n> Kod pocztowy:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['postcode'].valid && formGroup.controls['postcode'].touched}"
+             class="form-control" formControlName="postcode" name="postcode" placeholder="00-000"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['postcode'].valid && formGroup.controls['postcode'].touched"
+           class="alert alert-danger" i18n>
+        Podany kod pocztowy jest niepoprawny.
+      </div>
+    </div>
+    <br>
+    <div class="form-group text-left"><h5 class="display-5" i18n> Miasto:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['city'].valid && formGroup.controls['city'].touched}"
+             class="form-control" formControlName="city" name="city"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['city'].valid && formGroup.controls['city'].touched" class="alert alert-danger">
+        Podane miasto jest niepoprawne.
+      </div>
+    </div>
+
+    <br>
+    <input [disabled]="!formGroup.valid" class="btn btn-success" i18n type="submit" value="Zapisz zmianę">
+  </form>
+</div>

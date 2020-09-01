@@ -1,0 +1,117 @@
+<br><br>
+<h1>
+  <span class="badge badge-success" i18n>Dodaj recepcjoniste do zespołu:</span>
+</h1>
+<br>
+<div class="container text-center" style="margin: 0 auto; width:600px;">
+  <form (ngSubmit)="addReceptionist()" [formGroup]="formGroup">
+
+    <div class="form-group text-left"><h5 class="display-5" i18n> Imię:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['name'].valid && formGroup.controls['name'].touched}"
+             class="form-control" formControlName="name"
+             name="name"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['name'].valid && formGroup.controls['name'].touched" class="alert alert-danger"
+           i18n>
+        Podane imie jest niepoprawne.
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group text-left"><h5 class="display-5" i18n> Nazwisko:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['surname'].valid && formGroup.controls['surname'].touched}"
+             class="form-control" formControlName="surname"
+             name="surname"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['surname'].valid && formGroup.controls['surname'].touched"
+           class="alert alert-danger" i18n>
+        Podane nazwisko jest niepoprawne.
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group text-left"><h5 class="display-5" i18n> Email:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['email'].valid && formGroup.controls['email'].touched}"
+             class="form-control" formControlName="email"
+             name="email"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['email'].valid && formGroup.controls['email'].touched" class="alert alert-danger"
+           i18n>
+        Podany email jest niepoprawny.
+      </div>
+    </div>
+    <br>
+
+    <div class="form-group text-left"><h5 class="display-5" i18n> Numer telefonu:</h5></div>
+    <div>
+      <input
+        [ngClass]="{'in-valid': !formGroup.controls['phoneNumber'].valid && formGroup.controls['phoneNumber'].touched}"
+        class="form-control" formControlName="phoneNumber" name="priceMonth"
+        placeholder="np: 123456789"
+        type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['phoneNumber'].valid && formGroup.controls['phoneNumber'].touched"
+           class="alert alert-danger" i18n>
+        Podany numer telefonu jest niepoprawny.
+      </div>
+    </div>
+    <br><br>
+    <div class="form-group text-left"><b><h4 class="display-5" i18n> Dane zamieszkania:</h4></b></div>
+
+    <div class="form-group text-left"><h5 class="display-5" i18n> Ulica:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['street'].valid && formGroup.controls['street'].touched}"
+             class="form-control"
+             formControlName="street" name="typeOfMembership"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['street'].valid && formGroup.controls['street'].touched"
+           class="alert alert-danger" i18n>
+        Podany adres jest niepoprawny.
+      </div>
+    </div>
+    <br>
+    <div class="form-group text-left"><h5 class="display-5" i18n> Kod pocztowy:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['postcode'].valid && formGroup.controls['postcode'].touched}"
+             class="form-control" formControlName="postcode" name="postcode" placeholder="00-000"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['postcode'].valid && formGroup.controls['postcode'].touched"
+           class="alert alert-danger" i18n>
+        Podany kod pocztowy jest niepoprawny.
+      </div>
+    </div>
+    <br>
+    <div class="form-group text-left"><h5 class="display-5" i18n> Miasto:</h5></div>
+    <div>
+      <input [ngClass]="{'in-valid': !formGroup.controls['city'].valid && formGroup.controls['city'].touched}"
+             class="form-control" formControlName="city" name="city"
+             type="text">
+    </div>
+    <div>
+      <div *ngIf="!formGroup.controls['city'].valid && formGroup.controls['city'].touched" class="alert alert-danger"
+           i18n>
+        Podane miasto jest niepoprawne.
+      </div>
+    </div>
+
+    <div *ngIf="isSignUpFailed" class="alert alert-warning" i18n>
+      Rejestracja nieudana!<br>{{ errorMessage }}
+    </div>
+    <br>
+    <button [disabled]="formGroup.invalid" class="btn btn-success" i18n>Dodaj recepcjonistę</button>
+  </form>
+</div>
